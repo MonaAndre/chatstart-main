@@ -37,9 +37,9 @@
             </div>      
           </div>
           
-          <div class="chat-messages">
+          <form class="chat-messages registerForm" action="post">
             
-            <div class="message-box-holder">
+            <div class="message-box-holder " >
               <div class="message-sender">
                 <a href="#">Username</a>
                 <hr/>
@@ -55,11 +55,14 @@
                 <hr/>
                 <input class="chat-input"></input>
               </div>
-              <div class="message-sender">
-                <input type="submit" value="Register" class="message-send pad" />
+              <div class="message-sender email" >
+                <input class="chat-input" type="email" id="email">
+              </div>
+              <div id="submit-btn-container" class="message-sender">
+                <button type="submit"  class="message-send pad" id="register-btn">Registrera</button>
               </div>
             </div>
-          </div>
+          </form>
 
           <div class="message-sender">
             <a href="login.html">Already a member account? Login instead</a>
@@ -83,5 +86,6 @@
         
      </div>    
      </main>
+     <script src="./main.js"></script>
 </body>
 </html>
