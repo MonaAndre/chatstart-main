@@ -324,3 +324,7 @@ ul {
 .pad {
     padding: 10px;
 }
+
+.error{
+  display: none;
+}

@@ -20,7 +20,7 @@
            
             <div class="chat-group-name">
               <span class="status away"></span>
-              Reiste account for chat with Tony Stark
+              Register account for chat with Tony Stark
             </div>
             <div class="chatbox-icons">
               <label for="chkSettings"><i class="fa fa-gear"></i></label><input type="checkbox" id="chkSettings" />
@@ -43,20 +43,25 @@
               <div class="message-sender">
                 <a href="#">Username</a>
                 <hr/>
-                <input class="chat-input"></input>
+                <input id="user-name" class="chat-input" required></input>
+                <span class="error" id="user-name-error">Felaktigt användarnamn (endast bokstäver A–Ö och siffror), mellan 2-25 tecken!</span>
               </div>
               <div class="message-sender">
                 <a href="#">Password</a>
                 <hr/>
-                <input class="chat-input"></input>
+                <input class="chat-input" id="password" required></input> <!-- type="password" -->
+                <span class="error" id="password-error">Svagt lösenord (minst 8 tecken, minst 1 stor bokstav, minst 1 liten bokstav, minst 1 siffra, minst 1 specialtecken)</span>
               </div>
               <div class="message-sender">
                 <a href="#">Password again</a>
                 <hr/>
-                <input class="chat-input"></input>
+                <input class="chat-input" id="password-again" required></input> <!-- type="password" -->
+                <span class="error" id="password-again-error">Lösenorden stämmer inte överens</span>
               </div>
               <div class="message-sender email" >
-                <input class="chat-input" type="email" id="email">
+                <a href="#">Email</a>
+                <input class="chat-input" type="email" id="email" required>
+                <span class="error" id="email-error">Ogiltig email</span>
               </div>
               <div id="submit-btn-container" class="message-sender">
                 <button type="submit"  class="message-send pad" id="register-btn">Registrera</button>
@@ -86,6 +91,7 @@
         
      </div>    
      </main>
+     <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
      <script src="./main.js"></script>
 </body>
 </html>
