@@ -14,14 +14,14 @@ const userNameError = document.getElementById('user-name-error')
 const registerBtn = document.getElementById("register-btn");
 registerBtn.addEventListener("click",async (ev)=>{
     ev.preventDefault()
-    const rawResponse = await fetch('http://127.0.0.1:3000/createAccount',{
+    const rawResponse = await fetch('http://localhost:3000/createAccount',{
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           method:'POST',
           credentials:'include',
-          body: JSON.stringify({email: email.value, password: password.value})                
+          body: JSON.stringify({email: email.value, password: password.value, userName:userName.value})                
     })
     if(rawResponse.status == 204){
         //const content = await rawResponse.json();
