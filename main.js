@@ -12,7 +12,10 @@ const error = document.getElementById('error')
 const userName = document.getElementById('user-name')
 const userNameError = document.getElementById('user-name-error')
 const registerBtn = document.getElementById("register-btn");
-registerBtn.addEventListener("click",async (ev)=>{
+
+
+
+registerBtn.addEventListener("click",async (ev)=> {
     ev.preventDefault()
     const rawResponse = await fetch('http://localhost:3000/createAccount',{
         headers: {
@@ -25,7 +28,7 @@ registerBtn.addEventListener("click",async (ev)=>{
     })
     if(rawResponse.status == 204){
         //const content = await rawResponse.json();
-        window.location.replace('secretpage.html');
+        window.location.replace('login.html');
     }else{
         error.style.display = "block";
     }
