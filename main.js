@@ -1,75 +1,56 @@
+const createMessageBtn = document.getElementById("create-message-btn");
+const messageTextArea= document.getElementById("message-text");
+const messageContainer = document.querySelector('.chat-messages');
 
-const email = document.getElementById('email')
-const password = document.getElementById('password')
-const passwordError = document.getElementById("password-error")
-const passwordAgain = document.getElementById("password-again")
-const passwordAgainError = document.getElementById("password-again-error")
-const emailError = document.getElementById("email-error");
-
-
-
-const error = document.getElementById('error')
-const userName = document.getElementById('user-name')
-const userNameError = document.getElementById('user-name-error')
-const registerBtn = document.getElementById("register-btn");
-
-
-
-registerBtn.addEventListener("click",async (ev)=> {
+createMessageBtn.addEventListener("click",async (ev)=>{
     ev.preventDefault()
-    const rawResponse = await fetch('http://localhost:3000/createAccount',{
+   
+    const rawResponse = await fetch('http://localhost:3000/newMessage',{
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           method:'POST',
           credentials:'include',
-          body: JSON.stringify({email: email.value, password: password.value, userName:userName.value})                
+          body: JSON.stringify({text:messageTextArea.value})                
     })
     if(rawResponse.status == 204){
         //const content = await rawResponse.json();
-        window.location.replace('login.html');
-    }else{
-        error.style.display = "block";
-    }
+        console.log(messageTextArea.value);
+    } else{
+        console.log('response from database');
+        // error.style.display = "block";
+    } 
 
 })
 
-userName.addEventListener("input",()=>{
-    if(validator.isAlphanumeric(userName.value, 'sv-SE') && validator.isLength(userName.value, {min:2, max:25})){
-        userNameError.style.display="none";
-    }else{
-        userNameError.style.display="block";
-    }
-    })
+async function getAllMessages() {
+    const response = await fetch('http://localhost:3000/allMessages')
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    // return data;
+    //const name = data.userName;
+    const chatText = data[1].text;
+    console.log(chatText);
+   // drawMessages();
+
+   for(let i = 0; i<data.length; i++) {
+    const messageHolder = document.createElement('div');
+    messageHolder.classList = "message-box-holder";
+    messageContainer.appendChild(messageHolder);
+
+    const messageSender = document.createElement('div');
+    messageSender.innerHTML = data[i].userName;
+    messageSender.classList = "message-sender";
+    messageHolder.appendChild(messageSender);
     
-    
-   const comparePasswords = () => { 
-    if(passwordAgain.value === password.value) {
-        passwordAgainError.style.display="none";
-    }
-    else if(password.value&&passwordAgain.value) {
-        passwordAgainError.style.display="block";
-    }
+    const messageBox = document.createElement('div');
+    messageBox.innerHTML = data[i].text;
+    messageBox.classList = "message-box";
+    messageHolder.appendChild(messageBox);
+
+   }
 }
-password.addEventListener("input",()=>{
-    if(validator.isStrongPassword(password.value, {minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers:1, minSymbols: 1})){
-        passwordError.style.display="none";
-    }else{
-        passwordError.style.display="block";
-    }
-    comparePasswords();
-})
-    
-passwordAgain.addEventListener("input",()=>{
-   comparePasswords();
-})
 
-email.addEventListener("input",()=>{
-    if(validator.isEmail(email.value)){
-        emailError.style.display="none";
-    }else{
-        emailError.style.display="block";
-    }
-
-});
+window.addEventListener('load', getAllMessages())
