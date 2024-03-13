@@ -30,6 +30,7 @@ messageTextArea.addEventListener("keypress", async (ev)=>{
     } else{
         console.log('response from database');
         // error.style.display = "block";
+        
     } 
     
     getAllMessages();
@@ -37,6 +38,22 @@ messageTextArea.addEventListener("keypress", async (ev)=>{
 }
 
 
+
+/* async function checkIfLoggedIn() {
+    const response = await fetch('http://localhost:3000/session',{
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method:'GET',
+          credentials:'include'              
+
+    })
+    console.log(response.body);
+    //const data = await response.json();
+    return response.body;
+}
+ */
 
 
 async function getAllMessages() {
@@ -52,10 +69,15 @@ async function getAllMessages() {
     console.log(response);
     const data = await response.json();
     console.log(data);
-    // return data;
-    //const name = data.userName;
-   // drawMessages();
+   // return data;
+   // const name = data.userName;
+   
 
+   
+if(data.error == 401) {
+    window.location.replace('login.html')
+} else {
+    
    for(let i = 0; i<data.length; i++) {
     const messageHolder = document.createElement('div');
     messageHolder.classList = "message-box-holder";
@@ -82,5 +104,20 @@ async function getAllMessages() {
    
    messageContainer.scrollTop = messageContainer.scrollHeight;
 }
-
+}
 window.addEventListener('load', getAllMessages())
+
+
+// window.addEventListener('load', () => {
+//     const session = checkIfLoggedIn()
+//     console.log(session)
+//     if (session == undefined || null){
+//          window.location.replace('login.html');
+//     }else{
+//          getAllMessages() 
+//     }
+   
+
+// }
+
+// )
