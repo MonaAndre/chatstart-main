@@ -66,18 +66,16 @@ async function getAllMessages() {
           credentials:'include'              
 
     })
+    if(response.status == 401){
+        window.location.replace('login.html')
+
+    } else {
     console.log(response);
     const data = await response.json();
     console.log(data);
    // return data;
    // const name = data.userName;
-   
 
-   
-if(data.error == 401) {
-    window.location.replace('login.html')
-} else {
-    
    for(let i = 0; i<data.length; i++) {
     const messageHolder = document.createElement('div');
     messageHolder.classList = "message-box-holder";
