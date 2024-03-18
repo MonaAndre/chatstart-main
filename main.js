@@ -10,7 +10,6 @@ messageTextArea.addEventListener("keypress", async (ev)=>{
     newMessage(ev);
 }})   
 
-
  const newMessage = async (ev) => {
     ev.preventDefault()
    
@@ -37,25 +36,6 @@ messageTextArea.addEventListener("keypress", async (ev)=>{
     
 }
 
-
-
-/* async function checkIfLoggedIn() {
-    const response = await fetch('http://localhost:3000/session',{
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          method:'GET',
-          credentials:'include'              
-
-    })
-    console.log(response.body);
-    //const data = await response.json();
-    return response.body;
-}
- */
-
-
 async function getAllMessages() {
     const response = await fetch('http://localhost:3000/allMessages',{
         headers: {
@@ -73,9 +53,7 @@ async function getAllMessages() {
     console.log(response);
     const data = await response.json();
     console.log(data);
-   // return data;
-   // const name = data.userName;
-
+   
    for(let i = 0; i<data.length; i++) {
     const messageHolder = document.createElement('div');
     messageHolder.classList = "message-box-holder";
@@ -104,18 +82,3 @@ async function getAllMessages() {
 }
 }
 window.addEventListener('load', getAllMessages())
-
-
-// window.addEventListener('load', () => {
-//     const session = checkIfLoggedIn()
-//     console.log(session)
-//     if (session == undefined || null){
-//          window.location.replace('login.html');
-//     }else{
-//          getAllMessages() 
-//     }
-   
-
-// }
-
-// )

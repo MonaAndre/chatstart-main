@@ -1,4 +1,3 @@
-
 const email = document.getElementById('email')
 const password = document.getElementById('password')
 const passwordError = document.getElementById("password-error")
@@ -10,8 +9,6 @@ const error = document.getElementById('error')
 const userName = document.getElementById('user-name')
 const userNameError = document.getElementById('user-name-error')
 const registerBtn = document.getElementById("register-btn");
-
-
 
 registerBtn.addEventListener("click",async (ev)=> {
     ev.preventDefault()
@@ -30,7 +27,6 @@ registerBtn.addEventListener("click",async (ev)=> {
     }else{
         error.style.display = "block";
     }
-
 })
 
 userName.addEventListener("input",()=>{
@@ -40,7 +36,6 @@ userName.addEventListener("input",()=>{
         userNameError.style.display="block";
     }
     })
-    
     
    const comparePasswords = () => { 
     if(passwordAgain.value === password.value) {
@@ -69,5 +64,4 @@ email.addEventListener("input",()=>{
     }else{
         emailError.style.display="block";
     }
-
 });

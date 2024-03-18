@@ -15,9 +15,10 @@ loginBtn.addEventListener("click", async(ev)=>{
     
     })
     if(rawResponse.status == 200){
-        // const content = await rawResponse.json();
         window.location.replace('index.html');
-    }else{
-        // error.style.display = "block";
+    }else if(rawResponse.status == 401){
+        const error= document.getElementById("login-error")
+        error.innerText="Wrong password or username"
+        error.style.display="block"
     }
 })
